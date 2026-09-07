@@ -2,7 +2,7 @@
 
 Statische website die gekozen Google/iCloud-agenda's toont, zodat je ze met anderen kan delen. Week-, maand- en lijstweergave, werkt op mobiel, dark mode inbegrepen.
 
-Live: https://xlnnt.github.io/agenda/ (ook via https://raw.githack.com/xLnnT/agenda/main/docs/index.html)
+Live: https://www.lnnt.be/agenda-1d69a6 (rewrite in het portfolio naar https://xlnnt.github.io/agenda/)
 
 ## Hoe het werkt
 
