@@ -1,4 +1,4 @@
-/* Agenda — statische weergave van site/events.json */
+/* Agenda — statische weergave van docs/events.json */
 (function () {
   "use strict";
 
@@ -403,7 +403,8 @@
 
   /* ---------- laden ---------- */
   render();
-  fetch("https://xlnnt.github.io/agenda/events.json", { cache: "no-cache" })
+  // Tijdstempel in de URL omzeilt de browser- én CDN-cache: elke refresh haalt de nieuwste afspraken op
+  fetch(`https://xlnnt.github.io/agenda/events.json?t=${Date.now()}`, { cache: "no-store" })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
