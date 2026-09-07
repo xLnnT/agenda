@@ -31,6 +31,7 @@ jobs:
           FEED_WERK: ${{ secrets.FEED_WERK }}
           FEED_GIGS: ${{ secrets.FEED_GIGS }}
           FEED_VRT: ${{ secrets.FEED_VRT }}
+          FEED_PRIVE: ${{ secrets.FEED_PRIVE }}
       - name: Commit als er iets veranderd is
         run: |
           if git diff --quiet -- site/events.json; then

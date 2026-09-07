@@ -75,8 +75,9 @@ async function fetchCalendar(cal) {
       if (inst.event.status === "CANCELLED") continue;
       const start = inst.start;
       const end = inst.end ?? inst.start;
-      const title = text(inst.summary).trim() || "(zonder titel)";
-      const location = text(inst.event.location).trim() || undefined;
+      // Privé-agenda: enkel tonen dát er iets is, niet wat
+      const title = cal.private ? "Privé afspraak" : text(inst.summary).trim() || "(zonder titel)";
+      const location = cal.private ? undefined : text(inst.event.location).trim() || undefined;
 
       if (inst.isFullDay) {
         const s = dayKey(start);

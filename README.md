@@ -19,6 +19,8 @@ Voeg een item toe aan `calendars.json`. De feed-URL zelf staat niet in de repo m
 { "id": "werk", "name": "LnnT werk", "color": "#2563eb", "env": "FEED_WERK" }
 ```
 
+Met `"private": true` worden alle afspraken van die agenda getoond als "Privé afspraak", zonder titel of locatie.
+
 **Google-agenda:** ga op [calendar.google.com](https://calendar.google.com) naar *Instellingen en delen* van de agenda en kopieer onderaan het **Geheime adres in iCal-indeling**. De agenda hoeft niet openbaar te zijn. Wie het adres heeft kan de agenda enkel lezen, niet wijzigen.
 
 **iCloud-agenda:** Agenda-app → ⓘ naast de agenda → *Openbare agenda* aanzetten → de `webcal://`-link kopiëren.
