@@ -2,14 +2,14 @@
 
 Statische website die gekozen Google/iCloud-agenda's toont, zodat je ze met anderen kan delen. Week-, maand- en lijstweergave, werkt op mobiel, dark mode inbegrepen.
 
-Live: https://raw.githack.com/xLnnT/agenda/main/site/index.html
+Live: https://xlnnt.github.io/agenda/ (ook via https://raw.githack.com/xLnnT/agenda/main/docs/index.html)
 
 ## Hoe het werkt
 
 - `calendars.json` bepaalt welke agenda's getoond worden (naam, kleur, ICS-feed). Enkel wat hier staat is zichtbaar.
-- `scripts/build-events.mjs` haalt de feeds op, breidt herhalende afspraken uit en schrijft `site/events.json` (2 maanden terug tot 12 maanden vooruit).
-- De GitHub Action `.github/workflows/update-events.yml` draait dat script elk half uur en commit `site/events.json` als er iets veranderd is.
-- `site/` is de pagina zelf: puur HTML/CSS/JS, dus ze werkt op GitHack of GitHub Pages zonder server.
+- `scripts/build-events.mjs` haalt de feeds op, breidt herhalende afspraken uit en schrijft `docs/events.json` (2 maanden terug tot 12 maanden vooruit).
+- De GitHub Action `.github/workflows/update-events.yml` draait dat script elk half uur en commit `docs/events.json` als er iets veranderd is.
+- `docs/` is de pagina zelf: puur HTML/CSS/JS, dus ze werkt op GitHack of GitHub Pages zonder server.
 
 ## Agenda toevoegen of wijzigen
 
@@ -40,9 +40,9 @@ npm install
 npm run dev
 ```
 
-Dat haalt de afspraken op en serveert `site/` op http://localhost:3000.
+Dat haalt de afspraken op en serveert `docs/` op http://localhost:3000.
 
 ## Opmerkingen
 
 - GitHub schakelt geplande Actions uit als er 60 dagen geen activiteit is in de repo. Handmatig starten kan via *Actions → Afspraken bijwerken → Run workflow*.
-- De site is alleen-lezen: bezoekers zien een kopie (`site/events.json`) met enkel titel, tijdstip en locatie. Er is geen verbinding terug naar Google, dus niemand kan afspraken toevoegen of wijzigen.
+- De site is alleen-lezen: bezoekers zien een kopie (`docs/events.json`) met enkel titel, tijdstip en locatie. Er is geen verbinding terug naar Google, dus niemand kan afspraken toevoegen of wijzigen.

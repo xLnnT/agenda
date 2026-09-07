@@ -1,5 +1,5 @@
 // Haalt de ICS-feeds uit calendars.json op, breidt herhalende afspraken uit
-// en schrijft site/events.json. Wordt door de GitHub Action elk half uur gedraaid.
+// en schrijft docs/events.json. Wordt door de GitHub Action elk half uur gedraaid.
 import ical from "node-ical";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -121,6 +121,6 @@ const output = {
   errors,
 };
 
-await writeFile(path.join(root, "site", "events.json"), JSON.stringify(output));
-console.log(`→ site/events.json: ${events.length} afspraken, ${errors.length} fouten`);
+await writeFile(path.join(root, "docs", "events.json"), JSON.stringify(output));
+console.log(`→ docs/events.json: ${events.length} afspraken, ${errors.length} fouten`);
 if (errors.length === calendars.length && calendars.length > 0) process.exit(1);
