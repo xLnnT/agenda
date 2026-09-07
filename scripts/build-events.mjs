@@ -44,8 +44,15 @@ function addDays(key, n) {
   return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
 }
 
+/** Feed-URL: uit de env-variabele (secret) als "env" gezet is, anders het "url"-veld. */
+function feedUrl(cal) {
+  const raw = cal.env ? process.env[cal.env] : cal.url;
+  if (!raw) throw new Error(cal.env ? `env-variabele ${cal.env} ontbreekt` : "geen url");
+  return raw.trim().replace(/^webcals?:\/\//i, "https://");
+}
+
 async function fetchCalendar(cal) {
-  const url = cal.url.replace(/^webcals?:\/\//i, "https://");
+  const url = feedUrl(cal);
   const res = await fetch(url, { headers: { "User-Agent": "agenda-site/1.0" } });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const data = ical.sync.parseICS(await res.text());

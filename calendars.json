@@ -1,20 +1,5 @@
 [
-  {
-    "id": "werk",
-    "name": "LnnT werk",
-    "color": "#2563eb",
-    "url": "https://calendar.google.com/calendar/ical/d28cde554f25ee6a78768bf5e28a9438d87c463161b2f74e9288d5276604242c%40group.calendar.google.com/public/basic.ics"
-  },
-  {
-    "id": "gigs",
-    "name": "LnnT Gigs",
-    "color": "#db2777",
-    "url": "https://calendar.google.com/calendar/ical/c1d8bea3693f28cadb555db83d31eaa9dcf9903436d3e2d106aeb9da09b9ea29%40group.calendar.google.com/public/basic.ics"
-  },
-  {
-    "id": "vrt",
-    "name": "VRT",
-    "color": "#ea580c",
-    "url": "https://calendar.google.com/calendar/ical/156793c76406ce380d8bb890344c0b04038ffd61f4ce845f66fb24fb14843080%40group.calendar.google.com/public/basic.ics"
-  }
+  { "id": "werk", "name": "LnnT werk", "color": "#2563eb", "env": "FEED_WERK" },
+  { "id": "gigs", "name": "LnnT Gigs", "color": "#db2777", "env": "FEED_GIGS" },
+  { "id": "vrt",  "name": "VRT",       "color": "#ea580c", "env": "FEED_VRT" }
 ]

@@ -13,17 +13,23 @@ Live: https://raw.githack.com/xLnnT/agenda/main/site/index.html
 
 ## Agenda toevoegen of wijzigen
 
-Voeg een item toe aan `calendars.json`:
+Voeg een item toe aan `calendars.json`. De feed-URL zelf staat niet in de repo maar in een secret:
 
 ```json
-{ "id": "werk", "name": "LnnT werk", "color": "#2563eb", "url": "https://calendar.google.com/calendar/ical/<agenda-id>/public/basic.ics" }
+{ "id": "werk", "name": "LnnT werk", "color": "#2563eb", "env": "FEED_WERK" }
 ```
 
-**Google-agenda:** de agenda moet *openbaar* zijn. Ga op [calendar.google.com](https://calendar.google.com) naar de instellingen van de agenda → *Toegangsrechten voor afspraken* → vink *Openbaar maken* aan. De feed-URL is dan `https://calendar.google.com/calendar/ical/<agenda-id>/public/basic.ics` (de `@` in de id als `%40`). Je vindt de URL ook onderaan die pagina bij *Openbaar adres in iCal-indeling*.
+**Google-agenda:** ga op [calendar.google.com](https://calendar.google.com) naar *Instellingen en delen* van de agenda en kopieer onderaan het **Geheime adres in iCal-indeling**. De agenda hoeft niet openbaar te zijn. Wie het adres heeft kan de agenda enkel lezen, niet wijzigen.
 
 **iCloud-agenda:** Agenda-app → ⓘ naast de agenda → *Openbare agenda* aanzetten → de `webcal://`-link kopiëren.
 
-Na een push van `calendars.json` draait de Action meteen.
+Zet het adres als GitHub-secret met dezelfde naam als in `env` (*Settings → Secrets and variables → Actions*), of via de terminal:
+
+```
+gh secret set FEED_WERK
+```
+
+Voeg de secret ook toe aan de lijst in `.github/workflows/update-events.yml`. Na een push van `calendars.json` draait de Action meteen. Lokaal zet je dezelfde adressen in `.env` (zie `.env.example`).
 
 ## Lokaal draaien
 
@@ -37,4 +43,4 @@ Dat haalt de afspraken op en serveert `site/` op http://localhost:3000.
 ## Opmerkingen
 
 - GitHub schakelt geplande Actions uit als er 60 dagen geen activiteit is in de repo. Handmatig starten kan via *Actions → Afspraken bijwerken → Run workflow*.
-- Bezoekers zien enkel titel, tijdstip en locatie van afspraken.
+- De site is alleen-lezen: bezoekers zien een kopie (`site/events.json`) met enkel titel, tijdstip en locatie. Er is geen verbinding terug naar Google, dus niemand kan afspraken toevoegen of wijzigen.
