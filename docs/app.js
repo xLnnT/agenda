@@ -403,7 +403,7 @@
 
   /* ---------- laden ---------- */
   render();
-  fetch("events.json", { cache: "no-cache" })
+  fetch("https://xlnnt.github.io/agenda/events.json", { cache: "no-cache" })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
