@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Agenda
 
-## Getting Started
+Statische website die gekozen Google/iCloud-agenda's toont, zodat je ze met anderen kan delen. Week-, maand- en lijstweergave, werkt op mobiel, dark mode inbegrepen.
 
-First, run the development server:
+Live: https://raw.githack.com/xLnnT/agenda/main/site/index.html
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Hoe het werkt
+
+- `calendars.json` bepaalt welke agenda's getoond worden (naam, kleur, ICS-feed). Enkel wat hier staat is zichtbaar.
+- `scripts/build-events.mjs` haalt de feeds op, breidt herhalende afspraken uit en schrijft `site/events.json` (2 maanden terug tot 12 maanden vooruit).
+- De GitHub Action `.github/workflows/update-events.yml` draait dat script elk half uur en commit `site/events.json` als er iets veranderd is.
+- `site/` is de pagina zelf: puur HTML/CSS/JS, dus ze werkt op GitHack of GitHub Pages zonder server.
+
+## Agenda toevoegen of wijzigen
+
+Voeg een item toe aan `calendars.json`:
+
+```json
+{ "id": "werk", "name": "LnnT werk", "color": "#2563eb", "url": "https://calendar.google.com/calendar/ical/<agenda-id>/public/basic.ics" }
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Google-agenda:** de agenda moet *openbaar* zijn. Ga op [calendar.google.com](https://calendar.google.com) naar de instellingen van de agenda → *Toegangsrechten voor afspraken* → vink *Openbaar maken* aan. De feed-URL is dan `https://calendar.google.com/calendar/ical/<agenda-id>/public/basic.ics` (de `@` in de id als `%40`). Je vindt de URL ook onderaan die pagina bij *Openbaar adres in iCal-indeling*.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**iCloud-agenda:** Agenda-app → ⓘ naast de agenda → *Openbare agenda* aanzetten → de `webcal://`-link kopiëren.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Na een push van `calendars.json` draait de Action meteen.
 
-## Learn More
+## Lokaal draaien
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Dat haalt de afspraken op en serveert `site/` op http://localhost:3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Opmerkingen
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- GitHub schakelt geplande Actions uit als er 60 dagen geen activiteit is in de repo. Handmatig starten kan via *Actions → Afspraken bijwerken → Run workflow*.
+- Bezoekers zien enkel titel, tijdstip en locatie van afspraken.
