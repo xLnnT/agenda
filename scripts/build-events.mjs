@@ -77,7 +77,7 @@ async function fetchCalendar(cal) {
       const end = inst.end ?? inst.start;
       // Privé-agenda: enkel tonen dát er iets is, niet wat
       const title = cal.private ? "Privé afspraak" : text(inst.summary).trim() || "(zonder titel)";
-      const location = cal.private ? undefined : text(inst.event.location).trim() || undefined;
+      const location = cal.private ? undefined : text(inst.event.location).replace(/\s*\n\s*/g, ", ").trim() || undefined;
 
       if (inst.isFullDay) {
         const s = dayKey(start);
