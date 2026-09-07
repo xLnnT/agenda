@@ -1,6 +1,6 @@
 [
-  { "id": "werk",  "name": "LnnT werk",  "color": "#2563eb", "env": "FEED_WERK" },
-  { "id": "gigs",  "name": "LnnT Gigs",  "color": "#db2777", "env": "FEED_GIGS" },
-  { "id": "vrt",   "name": "VRT",        "color": "#ea580c", "env": "FEED_VRT" },
+  { "id": "werk",  "name": "LnnT werk",  "color": "#A47AE2", "env": "FEED_WERK" },
+  { "id": "gigs",  "name": "LnnT Gigs",  "color": "#8BE76B", "env": "FEED_GIGS" },
+  { "id": "vrt",   "name": "VRT",        "color": "#5541F0", "env": "FEED_VRT" },
   { "id": "prive", "name": "LnnT privé", "color": "#737373", "env": "FEED_PRIVE", "private": true }
 ]
