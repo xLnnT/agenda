@@ -16,7 +16,7 @@
   const title = app.dataset.title || "Agenda";
 
   const state = {
-    view: window.matchMedia("(max-width: 767px)").matches ? "list" : "week",
+    view: "month",
     cursor: new Date(),
     hidden: loadHidden(),
     data: null,
