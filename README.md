@@ -7,7 +7,7 @@ Live: https://xlnnt.github.io/agenda/ (ook via https://raw.githack.com/xLnnT/age
 ## Hoe het werkt
 
 - `calendars.json` bepaalt welke agenda's getoond worden (naam, kleur, ICS-feed). Enkel wat hier staat is zichtbaar.
-- `scripts/build-events.mjs` haalt de feeds op, breidt herhalende afspraken uit en schrijft `docs/events.json` (2 maanden terug tot 12 maanden vooruit).
+- `scripts/build-events.mjs` haalt de feeds op, breidt herhalende afspraken uit en schrijft `docs/events.json` (1 week terug tot het einde van de derde maand vooruit).
 - De GitHub Action `.github/workflows/update-events.yml` draait dat script elk half uur en commit `docs/events.json` als er iets veranderd is.
 - `docs/` is de pagina zelf: puur HTML/CSS/JS, dus ze werkt op GitHack of GitHub Pages zonder server.
 

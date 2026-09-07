@@ -199,6 +199,14 @@
 
   function renderWarning() {
     if (state.error) return `<div class="warn">Kon de agenda niet laden: ${esc(state.error)}</div>`;
+    if (state.data.range) {
+      const { from, to } = range();
+      const rFrom = new Date(state.data.range.from);
+      const rTo = new Date(state.data.range.to);
+      if (to <= rFrom || from >= rTo) {
+        return `<div class="warn">Deze agenda toont enkel afspraken van ${fmtShort(rFrom)} tot ${fmtShort(addDays(rTo, -1))}.</div>`;
+      }
+    }
     const failed = (state.data.errors || []).map((e) => state.data.calendars.find((c) => c.id === e.calendarId)?.name || e.calendarId);
     if (!failed.length) return "";
     return `<div class="warn">Kon niet ophalen: ${esc(failed.join(", "))}</div>`;

@@ -6,11 +6,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const MONTHS_BACK = 2;
-const MONTHS_AHEAD = 12;
+// Bewust kort venster: 1 week terug, tot het einde van de derde maand vooruit
+const DAYS_BACK = 7;
+const MONTHS_AHEAD = 3;
 
 const now = new Date();
-const from = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - MONTHS_BACK, 1));
+const from = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - DAYS_BACK));
 const to = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + MONTHS_AHEAD + 1, 1));
 
 function text(v) {
