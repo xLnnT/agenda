@@ -200,7 +200,11 @@
   function renderWarning() {
     if (state.error) return `<div class="warn">Kon de agenda niet laden: ${esc(state.error)}</div>`;
     if (state.data.range) {
-      const { from, to } = range();
+      let { from, to } = range();
+      if (state.view === "month") {
+        from = startOfMonth(state.cursor);
+        to = addDays(endOfMonth(state.cursor), 1);
+      }
       const rFrom = new Date(state.data.range.from);
       const rTo = new Date(state.data.range.to);
       if (to <= rFrom || from >= rTo) {
