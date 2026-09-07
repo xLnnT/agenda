@@ -131,6 +131,7 @@ main { flex: 1; min-height: 0; padding: 12px; }
 .daycol.today { background: color-mix(in srgb, var(--hover) 60%, transparent); }
 .hour-line { position: absolute; left: 0; right: 0; border-top: 1px solid var(--line-soft); }
 .tevent {
+  display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
   position: absolute; overflow: hidden;
   padding: 2px 6px; border-left: 3px solid; border-radius: 6px;
   font-size: 12px; line-height: 1.25; box-shadow: var(--shadow);
